@@ -1,0 +1,1 @@
+This repository contains algorithm and data structure practice in Javascript. These coding challenges are from various sources, namely LeetCode and Design Guru's "Grokking The Coding Interview", grouped by patterns and topics. The goal is to improve my problem-solving skills and fundamental understanding of algorithms and data structures.
