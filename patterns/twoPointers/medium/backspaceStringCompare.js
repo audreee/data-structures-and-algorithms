@@ -91,3 +91,9 @@ class Solution {
     return index;
   }
 }
+
+const sol = new Solution();
+console.log(sol.compare('xy#z', 'xzz#'));
+console.log(sol.compare('xy#z', 'xyz#'));
+console.log(sol.compare('xp#', 'xyz##'));
+console.log(sol.compare('xywrrmp', 'xywrrmu#p'));
