@@ -1,5 +1,13 @@
 /*
 Given the head of a Singly LinkedList that contains a cycle, write a function to find the starting node of the cycle.
+
+Time Complexity:
+As we know, finding the cycle in a LinkedList with ‘N’ nodes and also finding the length of the cycle requires O(N). 
+Also, as we have found the cycle, let’s say the length of the cycle is ‘K’. 
+We will need O(K) to find the start of the cycle. Therefore, the overall time complexity of our algorithm will be O(N).
+
+Space Complexity:
+The algorithm runs in constant space O(1).
 */
 
 /*class Node {
