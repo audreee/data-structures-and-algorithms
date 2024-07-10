@@ -8,6 +8,17 @@ We will need O(K) to find the start of the cycle. Therefore, the overall time co
 
 Space Complexity:
 The algorithm runs in constant space O(1).
+
+How it works:
+1. Find the cycle using Floyd's Tortoise and Hare algorithm
+2. Once the cycle is found, reset the slow pointer to the head
+3. Move both pointers at the same speed
+4. The pointers will meet at the start of the cycle. 
+
+The distance from the head to the start of the cycle is equal to the distance from the meeting point to the start of the cycle. 
+This is because the two pointers are separated by exactly one cycle's length when they first meet.
+Therefore, when the slow pointer moves from the head and the fast pointer moves from the meeting point, 
+they will meet at the start of the cycle. This is the point where both pointers have traveled the same distance.
 */
 
 /*class Node {
@@ -19,56 +30,32 @@ The algorithm runs in constant space O(1).
 
 class Solution {
   findCycleStart(head) {
-    let cycleLength;
+    let fast = head, slow = head;
 
-    // Use fast and slow pointers to find the cycle
-    let slow = head, fast = head;
-    while (fast !== null && fast.next !== null) {
-      fast = fast.next.next;
-      slow = slow.next;
+    // Use Floyd's Tortoise and Hare algorithm to find the cycle
+    while (fast && fast.next && fast.next.next) {
+        fast = fast.next.next
+        slow = slow.next
 
-      if (fast === slow) {
-        // Calculate the length of the cycle
-        cycleLength = this.findCycleLength(fast)
-        break;
-      }
+        // If the slow and fast pointers meet, we found a cycle
+        if (fast === slow) {
+
+            // Reset the slow pointer to the head
+            slow = head;
+            
+            // Move both pointers at the same speed
+            while (slow !== fast) {
+                slow = slow.next;
+                fast = fast.next;
+            }
+
+            // The pointers have collided for a second time, so we found the start of the cycle
+            return slow;
+        }
     }
 
-    // Move pointer2 ahead by 'n', where 'n' is the length of the cycle
-    let pointer1 = head, pointer2 = head;
-    for (let i = 0; i < cycleLength; i++) {
-      pointer2 = pointer2.next;
-    }
-
-    while (pointer2) {
-      // Increment both pointers by a step
-      pointer2 = pointer2.next;
-      pointer1 = pointer1.next;
-
-        // Pointers will meet at the start of the cycle
-      if (pointer1 === pointer2) {
-        return pointer2;
-      }
-    }
-  }
-
-  findCycleLength(head) {
-    // Set a pointer at the current node
-    let current = head;
-    
-    // Create a variable to store the node count
-    let count = 0;
-    
-    while (true) {
-      // Increment the pointer by a step, increasing the counter
-      current = current.next;
-      count++;
-      
-      // Once the pointer reaches the starting node, we've found the length
-      if (current === head) {
-        return count;
-      }
-    }
+    // If there is no cycle, return null
+    return null;
   }
 }
 
