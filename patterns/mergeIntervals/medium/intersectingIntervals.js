@@ -40,7 +40,13 @@ if (B.start <= A.end && B.end >= A.start) {
 **How to find the intersection:
 The start value of the intersection should be the greater of the two start values, and the end value of the intersection should be the smaller of the two end values.
 
-Time Complexity: O(N)
+Time Complexity:
+Time Complexity: The overall time complexity is O(m + n), where m is the length of intervals_a and n is the length of intervals_b. 
+This efficiency comes from the fact that each interval is processed at most once.
+
+Space Complexity:
+he space complexity is O(k), where k is the number of merged intervals you store in the result array. 
+This space is used to store the output intervals.
 */
 
 /*class Interval {
