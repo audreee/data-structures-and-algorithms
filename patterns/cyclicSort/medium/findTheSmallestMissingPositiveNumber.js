@@ -38,8 +38,10 @@ class Solution {
   findNumber(nums) {
     let i = 0;
     while (i < nums.length) {
+      // The target index for the current number nums[i].
+      // For example, number 3 should be at index 2 (nums[i] - 1)
       let j = nums[i] - 1;
-      // We need to check for positive numbers and numbers within the range (nums.length)
+      // We need to check for positive numbers and numbers within the range (nums.length). Avoid swapping negative or out-of-bound numbers.
       if (nums[i] > 0 && nums[i] <= nums.length && nums[i] !== nums[j]) {
         [nums[i], nums[j]] = [nums[j], nums[i]]
       } else {
